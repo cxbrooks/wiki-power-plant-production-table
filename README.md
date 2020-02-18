@@ -20,3 +20,20 @@ We need to be able to map from the Wikipedia page name to the the EIA page has "
 The [EAI API](https://www.eia.gov/opendata/qb.php?category=0) requires that a user register for a key.
 
 The net production data may be found at [EIA Data Sets > Electricity > Plant level data > California > (57073) Ivanpah 2 (57073)](https://www.eia.gov/opendata/qb.php?category=901385&sdid=ELEC.PLANT.GEN.57074-ALL-ALL.M)
+
+# Searching for links to eai.gov in a specific category
+Use https://quarry.wmflabs.org/
+
+For example:
+
+```
+USE enwiki_p;
+SELECT *
+FROM externallinks
+JOIN page ON page_id = el_from
+JOIN categorylinks ON cl_from = page_id
+WHERE cl_to='Solar_power_stations_in_Nevada' AND el_to LIKE '%eia.gov%'
+```
+
+* [Solar power stations in Nevada that have external links to eia.gov](https://quarry.wmflabs.org/query/42093)
+* [Power stations in Nevada that have external links to eai.gov](https://quarry.wmflabs.org/query/42094)
